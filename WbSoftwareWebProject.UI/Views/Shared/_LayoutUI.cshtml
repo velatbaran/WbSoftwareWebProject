@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@using WbSoftwareWebProject.BusinessLayer;
+@using WbSoftwareWebProject.Entities.Entity
+@{
+    ContactManager contactManager = new ContactManager();
+    Contact contact = contactManager.Find(x => x.Id == 1);
+}
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -31,6 +37,7 @@
     <!-- Template Main CSS File -->
     <link href="~/Content/Personal/assets/css/style.css" rel="stylesheet">
     <link href="~/Content/Site.css" rel="stylesheet" />
+
 </head>
 
 <body>
@@ -39,11 +46,10 @@
     <header id="header">
         <div class="container">
 
-            <h1 style="font-size:60px"><a href="/Home/Index">Welat BARAN</a></h1>
+            @*<a href="/Home/Index"><img src="~/Content/images/user_1.jpeg" alt="Welat BARAN" class="img-circle img-responsive" width="200" height="200"></a>*@
+            <h1 style="font-size:50px"><a href="/Home/Index">Welat BARAN</a></h1>
             <!-- Uncomment below if you prefer to use an image logo -->
-            @*<a href="index.html" class="mr-auto"><img src="~/Content/images/logo.png" alt="" class="img-fluid"></a>*@
             <h2 style="font-size:30px"><span>Bilgisayar mühendisiyim</span> ve yazılım alanında projeler geliştirmekteyim.</h2>
-
             <nav id="navbar" class="navbar">
                 <ul>
                     <li><a class="nav-link active" href="#header" style="font-size:20px">Anasayfa</a></li>
@@ -54,10 +60,16 @@
                     <li><a class="nav-link" href="#contact" style="font-size:20px">İletişim</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
-
-                <!-- To-do List : Social Links-->
-
             </nav><!-- .navbar -->
+            <br />
+            <!-- To-do List : Social Links-->
+            <div class="row">
+                <a href="@contact.Twitter" target="_blank" class="social"><i class="fa fa-twitter"></i></a>
+                <a href="@contact.Instagram" target="_blank" class="social"><i class="fa fa-instagram"></i></a>
+                <a href="@contact.Telegram" target="_blank" class="social"><i class="fa fa-telegram"></i></a>
+                <a href="@contact.Github" target="_blank" class="social"><i class="fa fa-github"></i></a>
+            </div>
+
 
         </div>
     </header><!-- End Header -->
@@ -66,7 +78,7 @@
     @RenderBody()
 
     <div class="credits">
-        Welat BARAN tarafından yapıldı. Tüm hakları saklıdır. &copy; @DateTime.Now.Year
+        Bilgisayar Mühendisi - Welat BARAN tarafından yapıldı. Tüm hakları saklıdır. &copy; @DateTime.Now.Year
     </div>
 
     <!-- Vendor JS Files -->

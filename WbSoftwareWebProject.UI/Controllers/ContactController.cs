@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using WbSoftwareWebProject.BusinessLayer;
@@ -57,13 +59,12 @@ namespace WbSoftwareWebProject.UI.Controllers
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult SendMessageByMail(string name = "", string email = "", string subject = "", string message = "")
+        public ActionResult SendMessageByMail(string name = "", string email = "", string subject = "", string phone = "", string message = "")
         {
             if (string.IsNullOrEmpty(name) == false && string.IsNullOrEmpty(email) == false && string.IsNullOrEmpty(subject) == false && string.IsNullOrEmpty(message) == false)
             {
-                //string siteUri = ConfigHelper.Get<string>("SiteRootUri");
-                string body = $"Merhaba {name};<br><br> {message} ";
-                MailHelper.SendMail(body, email, subject, true);
+                string body = $"Ad Soyad: {name};<br> Eposta : {email};<br> İrtibat No : {phone};<br> Mesaj : {message} ";
+                MailHelper.SendMail(body, "baranvelat021@gmail.com", subject, true);
                 return Json(new { hasError = false, trueMessage = "Mesajınız başarılı bir şekilde gönderilmiştir." });
             }
             return Json(new { hasError = true, errorMessage = "Mesaj gönderilirken hata oluştu" });
