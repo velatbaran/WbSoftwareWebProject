@@ -1,0 +1,107 @@
+﻿@model IEnumerable<WbSoftwareWebProject.Entities.Entity.Projects>
+@{
+    ViewBag.Title = "Yapılan Projeler";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-10 col-offset-1">
+        <h2>@ViewBag.Title</h2>
+        <hr />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <p>
+            <a href="/Projects/Add" class="btn btn-info" title="Yeni Proje Ekle"><span class="glyphicon glyphicon-plus"></span> Yeni Proje Ekle</a>
+        </p>
+        <table class="table table-bordered table-striped table-hover table-responsive ">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Customer)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProjectName)
+                </th>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.Services.Title)*@
+                    @Html.Label("Hizmet Alanı")
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProjectDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UsedTeknologies)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Customer)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProjectName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Services.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProjectDate.ToString().Split(' ')[0])
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UsedTeknologies)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    @*<td>
+                            <img src="~/Content/images/projects/@item.Image1" class="img-fluid img-responsive" width="128" height="128" />
+                        </td>
+                        <td>
+                            <img src="~/Content/images/projects/@item.Image2" class="img-fluid img-responsive" width="128" height="128" />
+                        </td>
+                        <td>
+                            <img src="~/Content/images/projects/@item.Image3" class="img-fluid img-responsive" width="128" height="128" />
+                        </td>*@
+                    <td>
+                        <div class="col-md-2 text-right">
+                            <div class="btn-group">
+                                <a class="btn dropdown-toggle btn-success" data-toggle="dropdown" href="#" title="Seçenekler">
+                                    <span class="glyphicon glyphicon-cog">&nbsp;</span>
+                                    Seçenekler
+                                    <span class="icon-cog icon-white"></span><span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="/Projects/Edit/@item.Id" title="Düzenle">
+                                            <span class="glyphicon glyphicon-edit">&nbsp;</span> Düzenle
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/Projects/Detail/@item.Id" title="Detay">
+                                            <span class="glyphicon glyphicon-search">&nbsp;</span> Detay
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/Projects/Delete/@item.Id" title="Sil" onclick="return confirm('Hizmet kaydını silmek istediğinize emin misiniz?')">
+                                            <span class="glyphicon glyphicon-remove" title="Sil">&nbsp;</span> Sil
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+

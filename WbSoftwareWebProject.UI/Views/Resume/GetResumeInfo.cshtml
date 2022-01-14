@@ -1,0 +1,62 @@
+﻿@using WbSoftwareWebProject.Entities.Entity
+@model List<Resume>
+
+<section id="resume" class="resume">
+    <div class="container">
+
+        <div class="section-title">
+            <h2>Özgeçmiş</h2>
+            <p>Özgeçmişimi kontrol et</p>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <h3 class="resume-title">Sumary</h3>
+                <div class="resume-item pb-0">
+                    <h4>Welat BARAN</h4>
+                    <p><em>Bilim ve teknolojiyle ilgilenmeyi çok severim. Sektörde çeşitli kurumlarda İş Zekası Uzman Yrd., Bilgi İşlem Sorumlusu ve Yazılımcı olarak görev yaptım ve hala yapmaktayım. Hayatı zevkli yaşamayı sever, sürekli öğrenmeyi ve öğrendiklerimi paylaşmayı hayatıma anlam katan özelliklerim olarak görürüm. Çeşitli kanallardan da beni takip edebilir ve bana ulaşabilirsiniz..</em></p>
+                    <p>
+                        <ul>
+                            <li>Diyarbakır/TÜRKİYE</li>
+                            <li>05393 371 1268</li>
+                            <li>baranvelat021@gmail.com</li>
+                        </ul>
+                    </p>
+                </div>
+
+                <h3 class="resume-title">Eğitim</h3>
+                <div class="resume-item">
+                    <h4>Bilgisayar Mühendisi &amp; Mühendislik Fakültesi</h4>
+                    <h5>2010 - 2015</h5>
+                    <p><em>Selçuk Üniversitesi - Mühendislik Fakültesi, Konya/TÜRKİYE</em></p>
+                    <p>Selçuk Üniversitesi Bilgisayar Mühendisliği bölümünden 2015 yılında mezun oldum.</p>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <h3 class="resume-title">Profesyonel Deneyimler</h3>
+
+                @foreach (Resume item in Model)
+                {
+                    <div class="resume-item">
+                        <h4>@item.Task</h4>
+                        @if (item.IsActive)
+                        {
+                            <h5>@item.StartDate.ToString("dd-MM-yyyy") - Aktif</h5>
+                        }
+                        else
+                        {
+                            <h5>@item.StartDate.ToString("dd-MM-yyyy") & @item.EndDate.ToString().Split(' ')[0]</h5>
+                        }
+                        <p><em>@item.Corporation & @item.Address </em></p>
+                        <p>
+                            <ul>
+                                <li>@item.Description</li>
+                            </ul>
+                        </p>
+                    </div>
+                }
+            </div>
+        </div>
+
+    </div>
+</section><!-- End Resume Section -->

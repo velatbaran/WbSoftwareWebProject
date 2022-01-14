@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutUI.cshtml";
+}
+
+<!-- ======= About Section ======= -->
+@Html.Action("GetAboutInfo", "About") <!-- End About Section -->
+<!-- ======= Resume Section ======= -->
+@Html.Action("GetResumeInfo", "Resume") <!-- End Resume Section -->
+<!-- ======= Services Section ======= -->
+@Html.Action("GetAllServices", "Services") <!-- End Services Section -->
+<!-- ======= Projects Section ======= -->
+@Html.Action("GetAllProjects", "Projects")<!-- End Projects Section -->
+<!-- ======= Contact Section ======= -->
+@Html.Action("GetContactInfo", "Contact")<!-- End Contact Section -->

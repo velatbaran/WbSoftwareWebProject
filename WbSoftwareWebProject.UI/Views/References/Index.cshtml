@@ -1,0 +1,99 @@
+﻿@using WbSoftwareWebProject.Entities.Entity
+@model IEnumerable<References>
+
+@{
+    ViewBag.Title = "Referanslar";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-10">
+        <h2>@ViewBag.Title</h2>
+        <hr />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered table-striped table-hover table-responsive ">
+            <tr class="text-center">
+                <th>
+                    @Html.DisplayNameFor(model => model.NameAndSurname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Company)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Degree)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Subject)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Comment)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CommentStatus)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr class="text-center">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NameAndSurname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Company)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Degree)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Subject)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Comment)
+                    </td>
+                    <td>
+                        @if (item.CommentStatus)
+                        {
+                            <i class="fa fa-check text-success"></i>
+                        }
+                        else
+                        {
+                            <i class="fa fa-times text-danger"></i>
+                        }
+                    </td>
+                    <td>
+                        <div class="col-md-2 text-right">
+                            <div class="btn-group">
+                                <a class="btn dropdown-toggle btn-success" data-toggle="dropdown" href="#" title="Seçenekler">
+                                    <span class="glyphicon glyphicon-cog">&nbsp;</span>
+                                    Seçenekler
+                                    <span class="icon-cog icon-white"></span><span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="/References/Edit/@item.Id" title="Düzenle">
+                                            <span class="glyphicon glyphicon-edit">&nbsp;</span>Düzenle
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/References/Detail/@item.Id" title="Detay">
+                                            <span class="glyphicon glyphicon-search">&nbsp;</span>Detay
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
+

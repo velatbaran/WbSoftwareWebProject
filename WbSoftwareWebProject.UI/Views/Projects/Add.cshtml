@@ -1,0 +1,85 @@
+﻿@model WbSoftwareWebProject.Entities.Entity.Projects
+@{
+    ViewBag.Title = "Proje Ekle";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-10">
+        <h2>@ViewBag.Title</h2>
+        <hr />
+    </div>
+</div>
+<div class="row">
+    @using (Html.BeginForm("Add", "Projects", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+
+            <div class="col-md-2 col-offset-1">
+                @Html.LabelFor(model => model.Image1, htmlAttributes: new { @class = "control-label" })
+                <input type="file" name="Image1" id="Image1" class="form-control" accept=".png,.jpg,.jpeg" /><br />
+                <span class="glyphico glyphicon-info-sign">&nbsp;</span>
+                <span><i>Lütfen .png,.jpeg ya da .jpg formatı kullanın</i></span> <hr />
+                @Html.LabelFor(model => model.Image2, htmlAttributes: new { @class = "control-label" })
+                <input type="file" name="Image2" id="Image2" class="form-control" accept=".png,.jpg,.jpeg" /><br />
+                <span class="glyphico glyphicon-info-sign">&nbsp;</span>
+                <span><i>Lütfen .png,.jpeg ya da .jpg formatı kullanın</i></span> <hr />
+                @Html.LabelFor(model => model.Image3, htmlAttributes: new { @class = "control-label" })
+                <input type="file" name="Image3" id="Image3" class="form-control" accept=".png,.jpg,.jpeg" /><br />
+                <span class="glyphico glyphicon-info-sign">&nbsp;</span>
+                <span><i>Lütfen .png,.jpeg ya da .jpg formatı kullanın</i></span> <hr />
+            </div>
+
+            <div class="col-md-6 col-offset-1">
+                @Html.ValidationSummary(false)
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Customer, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.Customer, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ProjectName, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.ProjectName, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ServicesId, "Hizmet Alanı", htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @*@Html.DropDownListFor(model => model.ServicesId, (List<SelectListItem>)ViewBag.ListServices, "Lütfen hizmet alanını seçiniz", new { @class = "dropdown form-control" })*@
+                        @Html.DropDownListFor(model => model.ServicesId, (SelectList)ViewBag.ListServices, "Lütfen hizmet alanını seçiniz", new { @class = "dropdown form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ProjectDate, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.ProjectDate, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.UsedTeknologies, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.UsedTeknologies, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        <textarea name="Description" class="form-control" rows="6" cols="5"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12 text-right">
+                        <button type="submit" class="btn btn-success" title="Kaydet"><span class="glyphicon glyphicon-floppy-saved"></span> Kaydet</button>
+                        <a href="/Projects/Index" class="btn btn-default" title="Geri Dön"><span class="glyphicon glyphicon-arrow-left mr-2"></span> Geri Dön</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    }
+</div>
+

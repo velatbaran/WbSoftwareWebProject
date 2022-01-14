@@ -1,0 +1,89 @@
+﻿@model IEnumerable<WbSoftwareWebProject.Entities.Entity.Services>
+@{
+    ViewBag.Title = "Hizmet Alanları";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-10">
+        <h2>@ViewBag.Title</h2>
+        <hr />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <p>
+            <a href="/Services/Add" class="btn btn-info" title="Yeni Hizmet Ekle"><span class="glyphicon glyphicon-plus"></span> Yeni Hizmet Ekle</a>
+        </p>
+        <table class="table table-bordered table-striped table-hover table-responsive ">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedOn)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UpdatedOn)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SavedUsername)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedOn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UpdatedOn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SavedUsername)
+                    </td>
+                    <td>
+                        @*@Html.ActionLink("Güncelle", "Edit", new { id = item.ID }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })*@
+                        <div class="col-md-2 text-right">
+                            <div class="btn-group">
+                                <a class="btn dropdown-toggle btn-success" data-toggle="dropdown" href="#" title="Seçenekler">
+                                    <span class="glyphicon glyphicon-cog">&nbsp;</span>
+                                    Seçenekler
+                                    <span class="icon-cog icon-white"></span><span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="/Services/Edit/@item.Id" title="Düzenle">
+                                            <span class="glyphicon glyphicon-edit">&nbsp;</span>Düzenle
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/Services/Delete/@item.Id" title="Sil" onclick="return confirm('Hizmet kaydını silmek istediğinize emin misiniz?')">
+                                            <span class="glyphicon glyphicon-remove" title="Sil">&nbsp;</span> Sil
+                                        </a>
+                                    </li>   
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+

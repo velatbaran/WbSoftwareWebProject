@@ -1,0 +1,108 @@
+﻿@using WbSoftwareWebProject.Entities.Entity
+@model List<Contact>
+
+
+<section id="contact" class="contact">
+    <div class="container">
+
+        <div class="section-title">
+            <h2>İletişim</h2>
+            <p>Benimle İletişime Geçin</p>
+        </div>
+
+        <div class="row mt-2">
+            @foreach (Contact item in Model)
+            {
+                <div class="col-md-6 d-flex align-items-stretch">
+                    <div class="info-box">
+                        <i class="bx bx-map"></i>
+                        <h3>Adres</h3>
+                        <p>@item.Address</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mt-4 mt-md-0 d-flex align-items-stretch">
+                    <div class="info-box">
+                        <i class="bx bx-share-alt"></i>
+                        <h3>Sosyal Linkler</h3>
+                        <div class="social-links">
+                            <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                            <a href="#" class="google-plus"><i class="bi bi-skype"></i></a>
+                            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mt-4 d-flex align-items-stretch">
+                    <div class="info-box">
+                        <i class="bx bx-envelope"></i>
+                        <h3>Email</h3>
+                        <p>@item.Email</p>
+                    </div>
+                </div>
+                <div class="col-md-6 mt-4 d-flex align-items-stretch">
+                    <div class="info-box">
+                        <i class="bx bx-phone-call"></i>
+                        <h3>Telefon</h3>
+                        <p>@item.Phone</p>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <form role="form" class="php-email-form mt-4" method="post" action="/Contact/SendMessageByMail">
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                </div>
+                <div class="col-md-6 form-group mt-3 mt-md-0">
+                    <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                </div>
+            </div>
+            <div class="form-group mt-3">
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+            </div>
+            <div class="form-group mt-3">
+                <textarea class="form-control" name="message" id="message" rows="5" placeholder="Message" required></textarea>
+            </div>
+            <div class="text-center"><button type="button" id="btnSendMessage" class="btn btn-dark"><i class="fa fa-send mr-2"></i> Mesaj Gönder</button></div>
+        </form>
+
+    </div>
+</section>
+
+<script src="~/Scripts/jquery-3.0.0.min.js"></script>
+    <script>
+
+        $(function () {
+
+            $("#btnSendMessage").click(function () {
+
+               var _name = $("#name").val();
+               var _email = $("#email").val();
+               var _subject = $("#subject").val();
+               var _message = $("#message").val();
+
+                if (_name == null || _email == null || _subject == null || _message == null) {
+                    alert("Lütfen gerekli tüm alanları doldurun.")
+                }
+
+                    $.ajax({
+                        method: "POST",
+                        url: "/Contact/SendMessageByMail",
+                        data: { name: _name, email: _email, subject: _subject, message: _message }
+                    }).done(function (result) {
+                        if (result.hasError) {
+                            alert(result.errorMessage)
+                        } else if (!result.hasError) {
+                            alert(result.trueMessage)
+                        }
+                    }).fail(function () {
+                        alert("Sunucu ile bağlantı kurulamadı.");
+                    })
+
+            })
+        })
+    </script>

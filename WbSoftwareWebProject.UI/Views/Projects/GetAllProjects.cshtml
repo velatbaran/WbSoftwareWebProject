@@ -1,0 +1,34 @@
+﻿@using WbSoftwareWebProject.Entities.Entity
+@model List<Projects>
+
+<section id="portfolio" class="portfolio">
+    <div class="container">
+
+        <div class="section-title">
+            <h2>Projeler</h2>
+            <p>Yapılan Projeler</p>
+        </div>
+
+        <div class="row portfolio-container">
+
+            @foreach (Projects item in Model)
+            {
+                <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                    <div class="portfolio-wrap">
+                        <img src="~/Content/images/projects/@item.Image2" class="img-fluid" alt="" height="600" width="800">
+                        <div class="portfolio-info">
+                            <h4>@item.Customer</h4>
+                            <p>@item.ProjectName</p>
+                            <div class="portfolio-links">
+                                <a href="~/Content/images/projects/@item.Image2" data-gallery="portfolioGallery" class="portfolio-lightbox" title="@item.ProjectName"><i class="bx bx-plus"></i></a>
+                                <a href="/Projects/ProjectDetails/@item.Id" data-gallery="portfolioDetailsGallery" data-glightbox="type: external" class="portfolio-details-lightbox" title="Proje Detay"><i class="bx bx-link"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+
+    </div>
+</section>

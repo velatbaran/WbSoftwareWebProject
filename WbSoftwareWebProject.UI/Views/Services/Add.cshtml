@@ -1,0 +1,49 @@
+﻿@model WbSoftwareWebProject.Entities.Entity.Services
+@{
+    ViewBag.Title = "Hizmet Alanı Ekle";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@*<link href="~/Content/validation-summary.css" rel="stylesheet" />*@
+
+<div class="row" style="margin-top:20px">
+    <div class="col-md-10 col-offset-1">
+        <h2>@ViewBag.Title</h2>
+        <hr />
+    </div>
+</div>
+
+<div class="row">
+    <!--sağdan soldan 1 birim toplam 2-->
+    <div class="col-md-8 col-offset-2">
+        @using (Html.BeginForm("Add", "Services", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-horizontal">
+                @Html.ValidationSummary(false)
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <textarea name="Description" class="form-control" rows="10" cols="5"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button type="submit" class="btn btn-success" title="Kaydet"><span class="glyphicon glyphicon-floppy-saved mr-2"></span> Kaydet</button>
+                        <a href="/Services/Index" class="btn btn-default" title="Geri Dön"><span class="glyphicon glyphicon-arrow-left mr-2"></span>Geri Dön</a>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+

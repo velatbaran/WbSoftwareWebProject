@@ -1,0 +1,104 @@
+﻿@model WbSoftwareWebProject.Entities.Entity.Resume
+@{
+    ViewBag.Title = "Özgeçmiş Detayı";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <p class="display-4 border-bottom"></p>
+        <h3>@ViewBag.Title</h3>
+        <hr />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-10 col-offset-1">
+        <dt>
+            @Html.DisplayNameFor(model => model.Corporation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Corporation)
+        </dd>
+        <hr />
+        <dt>
+            @Html.DisplayNameFor(model => model.Task)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Task)
+        </dd>
+        <hr />
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <hr />
+        <dt>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
+        <hr />
+        <dt>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EndDate)
+        </dd>
+        <hr />
+        <dt>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </dt>
+        <dd>
+            @if (Model.IsActive)
+            {
+                <i class="fa fa-check text-success"></i>
+            }
+            else
+            {
+                <i class="fa fa-times text-danger"></i>
+            }
+        </dd>
+        <hr />
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+        <hr />
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedOn)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreatedOn)
+        </dd>
+        <hr />
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatedOn)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedOn)
+        </dd>
+        <hr />
+        <dt>
+            @Html.DisplayNameFor(model => model.SavedUsername)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SavedUsername)
+        </dd>
+    </div>
+
+</div>
+
+
+<div class="col-md-12 text-right">
+    <a href="/Resume/Edit/@Model.Id" class="btn btn-warning" title="Güncelle"><span class="glyphicon glyphicon-edit mr-2"></span> Güncelle</a>
+    <a href="/Resume/Index" class="btn btn-default" title="Geri Dön"><span class="glyphicon glyphicon-arrow-left mr-2"></span> Geri Dön</a>
+</div>
+
+
+

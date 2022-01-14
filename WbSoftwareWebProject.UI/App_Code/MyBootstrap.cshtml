@@ -1,0 +1,23 @@
+﻿@helper ModalPopup(string id = "MyModal", string title = "Modal Title", bool showCloseButton = true)
+{
+    <!-- Modal -->
+    <div class="modal fade" id="@id" name="@id" tabindex="-1" aria-labelledby="@(id + "_label")" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" id="@(id + "_header")" style="background:#000000">
+                    <h5 class="modal-title" id="@(id + "_label")" style="background:#000000">@title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" title="Kapat"></button>
+                </div>
+                <div class="modal-body" id="@(id + "_body")" style="background:#000000">
+                    ...
+                </div>
+                <div class="modal-footer" id="@(id + "_footer")"style="background:#000000">
+                    @if (showCloseButton)
+                    {
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" title="Kapat"><i class="fa fa-times mr-2"></i>İptal</button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}

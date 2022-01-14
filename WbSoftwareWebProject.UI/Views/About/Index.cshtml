@@ -1,0 +1,75 @@
+﻿@model WbSoftwareWebProject.Entities.Entity.About
+@{
+    ViewBag.Title = "Hakkımızda";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-10">
+        <h2>@ViewBag.Title</h2>
+        <hr />
+    </div>
+</div>
+<div class="row">
+    @using (Html.BeginForm("Index", "About", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <div class="col-md-2 col-offset-1">
+                <img src="~/Content/images/@Model.ProfileImage" class="img-circle img-responsive" width="128" height="128" />
+                @Html.HiddenFor(model => model.ProfileImage)
+                <br /><br />
+                <input type="file" name="ProfileImage" id="ProfileImage" class="form-control" accept=".png,.jpg,.jpeg" />
+                <span class="glyphicon glyphicon-info-sign">&nbsp;</span>
+                <span><i>Lütfen .jpg,.png ve .jpeg formatı kullanın.</i></span>
+            </div>
+
+            <div class="col-md-6 col-offset-1">
+                @Html.ValidationSummary(false)
+                @Html.HiddenFor(model => model.Id)
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ShortText, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @*@Html.EditorFor(model => model.ShortText, new { htmlAttributes = new { @class = "form-control" } })*@
+                        <textarea name="ShortText" class="form-control" rows="10" cols="5">@Model.ShortText</textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.LongText, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @*@Html.EditorFor(model => model.LongText, new { htmlAttributes = new { @class = "form-control" } })*@
+                        <textarea name="LongText" class="form-control" rows="10" cols="5">@Model.LongText</textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", type = "mail" } })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @* @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", type = "password" } })*@
+                        <input type="password" value="@Model.Password" name="Password" class="form-control col-md-10" readonly />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12 text-right">
+                        <button type="submit" class="btn btn-success" title="Kaydet"><span class="glyphicon glyphicon-ok"></span> Kaydet</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+

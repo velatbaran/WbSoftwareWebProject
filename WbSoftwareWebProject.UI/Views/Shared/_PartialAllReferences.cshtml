@@ -1,0 +1,43 @@
+﻿@using WbSoftwareWebProject.Entities.Entity
+@using WbSoftwareWebProject.BusinessLayer
+@model List<References>
+@{
+    ReferencesManager referencesManager = new ReferencesManager();
+}
+
+<div class="testimonials container">
+
+    <div class="section-title">
+        <h2>Referanslar</h2>
+    </div>
+
+    <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
+        <div class="swiper-wrapper">
+
+            @foreach (var item in referencesManager.List(x => x.CommentStatus == true))
+            {
+                <div class="swiper-slide">
+                    <div class="testimonial-item">
+                        <p>
+                            <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                            @item.Comment
+                            <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                        </p>
+                        <img src="~/Content/Personel/assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
+                        <h3>@item.NameAndSurname</h3>
+                        <h4>@item.Company &amp; @item.Degree</h4>
+                    </div>
+                </div><!-- End testimonial item -->
+            }
+
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+
+    <div class="owl-carousel testimonials-carousel">
+
+    </div>
+
+</div>
+
+

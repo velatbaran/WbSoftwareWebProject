@@ -1,0 +1,80 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welat BARAN Admin - Giriş</title>
+
+    <!-- Favicons -->
+    <link href="~/Content/images/logo.png" rel="icon">
+
+    <link href="~/Content/Admin/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/Admin/css/styles.css" rel="stylesheet">
+</head>
+<body>
+    <div class="row" style="margin-top:50px">
+        <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
+            <div class="login-panel panel panel-default">
+                <div class="panel-heading text-center">Giriş Sayfası</div>
+                <div class="panel-body">
+                    <form role="form">
+                        <fieldset>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="E-mail" name="Email" id="email" type="Email" autofocus="">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Password" name="Password" id="password" type="password" value="">
+                            </div>
+                            <button type="button" id="btnLogin" class="btn btn-primary" title="Giriş Yap"><i class="glyphicon glyphicon-log-in mr-2"></i> Giriş Yap</button>
+                            <a href="/Admin/ForgetPassword" class="pull-right" title="Şifremi Unuttum">Şİfremi Unuttum</a>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div><!-- /.col-->
+    </div><!-- /.row -->
+
+
+    <script src="~/Content/Admin/js/jquery-1.11.1.min.js"></script>
+    <script src="~/Content/Admin/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+<script type="text/javascript">
+    $(function () {
+
+        $("#btnLogin").click(function () {
+
+            var _email = $("#email").val();
+            var _password = $("#password").val();
+
+            if (_email == null || _password == null) {
+                alert("Lütfen email ve password alanını doldurunuz.")
+            }
+
+            $.ajax({
+
+                method: "POST",
+                url: "/Admin/Login",
+                data: { email: _email, password: _password }
+
+            }).done(function (result) {
+                if (result.hasError) {
+                    alert(result.Message)
+                } else {
+                    alert(result.Message)
+                    window.location.href = "/Admin/Index";
+                }
+            }).fail(function () {
+                alert("Sunucu ile bağlantı kurulamadı.")
+            });
+
+        });
+
+    });
+</script>
