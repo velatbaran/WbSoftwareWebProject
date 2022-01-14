@@ -8,7 +8,7 @@ using WbSoftwareWebProject.BusinessLayer;
 namespace WbSoftwareWebProject.UI.Controllers
 {
     public class HomeController : Controller
-    {
+    {     
         public ActionResult Index()
         {
             return View();

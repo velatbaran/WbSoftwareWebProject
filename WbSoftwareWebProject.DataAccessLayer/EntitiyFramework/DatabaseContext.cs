@@ -21,8 +21,8 @@ namespace WbSoftwareWebProject.DataAccessLayer.EntitiyFramework
 
         public DatabaseContext()
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<DatabaseContext, Configuration>("DatabaseContext"));
-            // Database.SetInitializer(new MyInitializer());
+            // Database.SetInitializer(new MigrateDatabaseToLatestVersion<DatabaseContext, Configuration>("DatabaseContext"));
+            Database.SetInitializer(new MyInitializer());
         }
     }
 }
